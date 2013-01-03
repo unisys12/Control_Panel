@@ -1,0 +1,300 @@
+/* Icon-Fonts by IcoMoon
+----------------------------------- */
+
+@font-face {
+	font-family: 'icomoon';
+	src:url('fonts/icomoon.eot');
+	src:url('fonts/icomoon.eot?#iefix') format('embedded-opentype'),
+		url('fonts/icomoon.svg#icomoon') format('svg'),
+		url('fonts/icomoon.woff') format('woff'),
+		url('fonts/icomoon.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+/* Use the following CSS code if you want to use data attributes for inserting your icons */
+[data-icon]:before {
+	font-family: 'icomoon';
+	content: attr(data-icon);
+	speak: none;
+	font-weight: normal;
+	-webkit-font-smoothing: antialiased;
+}
+
+/* Use the following CSS code if you want to have a class per icon */
+[class^="icon-"]:before, [class*=" icon-"]:before {
+	font-family: 'icomoon';
+	font-style: normal;
+	speak: none;
+	font-weight: normal;
+	-webkit-font-smoothing: antialiased;
+}
+.icon-printer:before {
+	content: "\70";
+}
+.icon-home:before {
+	content: "\68";
+}
+.icon-cabinet:before {
+	content: "\66";
+}
+.icon-clock:before {
+	content: "\74";
+}
+.icon-cars:before {
+	content: "\6d";
+}
+.icon-file-pdf:before {
+	content: "\70\64\66";
+}
+.icon-html5:before {
+	content: "\35";
+}
+.icon-css3:before {
+	content: "\33";
+}
+
+* {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.col {
+	overflow: hidden;
+}
+
+.whole {
+	width: 99.99%;
+	padding-left: 1.5em;
+	padding-right: 1.5em;
+	float: left;
+}
+
+.two-thirds {
+	width: 66.66%;
+	padding-left: 1.5em;
+	padding-right: 1.5em;
+	float: left;
+}
+
+.one-third {
+	width: 33.33%;
+	padding-left: 1.5em;
+	padding-right: 1.5em;
+	float: right;
+}
+
+.two-thirds header {
+	padding: .1em;
+}
+
+.one-third header {
+}
+
+.space {
+	padding-top: .5em;
+	padding-bottom: .5em;
+}
+
+/* Overall page styling 
+------------------------------------------ */
+
+body {
+	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+	font-weight: 300;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:focus {
+  outline: thin dotted #333;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+
+a:visited {
+	color: #124CE0;
+}
+
+a:hover {
+	color: #0C318F;
+}
+
+.main {
+	margin-top: 0;
+	margin-left: 2em;
+	padding: 0;
+}
+
+
+.main nav {
+	margin-right: 2em;
+	padding: 0;
+	min-width: 15%;
+}
+
+.main nav ul {
+	list-style: none;
+	padding: 0;	
+}
+
+.main nav ul li {
+	padding-bottom: .5em;
+	padding-left: 0;
+	padding-right: 1em;
+	display: inline-block;
+}
+
+span {
+	display: inline-block;
+	margin-right: .5em;
+	margin-left: .5em;
+}
+
+footer{
+	padding-top: 1em;
+	bottom:100%;
+	float: left;
+}
+
+/* Form and central content styline 
+------------------------------------------- */
+
+/* Log-in Form */
+fieldset {
+	margin: 0 2px;
+    padding: 0.35em 0.625em 0.75em;
+	width: 200px;
+	border: 1px solid #3E3E3E;
+	border-radius: 1em;
+	box-shadow: 2px 2px 3px rgba(0,0,0,0.5);
+}
+
+form {
+	margin: 0;
+
+}
+
+/* Mileage Form */
+form {
+	width: 200px;
+}
+
+fieldset {
+	width: 200px;
+	border: 1px solid #3E3E3E;
+	border-radius: 1em;
+	box-shadow: 2px 2px 3px rgba(0,0,0,0.5);
+}
+
+textarea {
+	width: 99%;
+	font-family: Helvetica, Arial, sans-serif;
+}
+
+.day {
+	padding: .5em;
+}
+
+label {
+	margin-right: 1em;
+}
+
+/* Error styling for the form
+------------------------------------ */
+.error {
+	color: red;
+	font-size: small;
+	padding-bottom: .5em;
+}
+
+/* Mileage Summary/Display Table
+------------------------------------- */
+
+.mileage-table th {
+	padding: .5em;
+	font-family: 'Gudea';
+}
+
+.mileage-table td{
+	padding-left: .5em;
+	padding-right: .5em;
+	text-align: center;
+	font-family: 'Questrial';
+	font-size: 1em;
+}
+
+.mileage-table tr:hover {
+	background-color: rgb(150,150,150);
+	background-color: rgba(0,0,0,0.1);
+
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(rgba(0,0,0,0.3)), to(rgba(0,0,0,0.1)));
+	background-image: -webkit-linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.1));
+	background-image: -moz-linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.1));
+	background-image: -o-linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.1));
+	background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.1));
+}
+
+/* Timesheet Styling
+-------------------------------------- */
+
+.timesheet {
+	display: block;
+}
+
+.timesheet input{
+	display: inline-block;
+	margin-top: auto;
+	margin-bottom: .5em;
+}
+
+/* Positions submit and reset buttons on timesheet */
+.timesheet input[type=submit] {
+	margin-left: 0;
+	margin-right: .25em;
+}
+
+.timesheet input[type=reset] {
+	margin-left: .25em;
+	margin-right: .25em;
+}
+
+/* Old Calendar Styling */
+.calendar tbody {
+	background: #CCC;
+	background: -webkit-linear-gradient(#CCC, #DDD);
+	background: -moz-linear-gradient(#CCC, #DDD);
+	background: -o-linear-gradient(#CCC, #DDD);
+	background: -ms-linear-gradient(#CCC, #DDD);
+	background: linear-gradient(#CCC, #DDD);
+}
+
+.calendar td {
+	margin: 0;
+	padding: 1em;
+
+	border-top: 1px solid #EEE;
+	border-bottom: 1px solid #999;
+	border-left: 1px solid #EEE;
+	border-right: 1px solid #999;
+
+}
+
+.calendar .weekday:hover {
+	background: #BBB;
+	background: -webkit-linear-gradient(#BBB, #DDD);
+	background: -moz-linear-gradient(#BBB, #DDD);
+	background: -o-linear-gradient(#BBB, #DDD);
+	background: -ms-linear-gradient(#BBB, #DDD);
+	background: linear-gradient(#BBB, #DDD);
+
+	border: 1px solid #555;
+}
+
+#codeigniter_profiler fieldset{
+	width: 66%;
+}
