@@ -12,3 +12,9 @@ Typically you would start out adding your starting mileage in the morning and yo
 
 #### Mileage Summary
 The Mileage Summary works by taking a given date range, provided by the user, and displays that summary in a table. The summary includes the date, starting and ending mileage as well as the total for that day and the total for that range of dates at the bottom of the table. To make it easier to print access this data, so that you can turn it in, I supplied a Print button above the Summary table. Clicking this button takes you to a different page, using all the same data just styled in a printer friendly format. This was done using a @media_print media query and contains styling of my own. 
+
+#### Edit Mileage Entry
+To edit currently entered data - simply click the edit link at the end of the row, next to the daily total. The mileage entry form will display, with that perticular days data. Change the data you need and click submit. 
+
+## Timesheet Log
+Again, simple form here. The users name is automatically entered at the top, using a combination of Session data used to query the users table in the database. The date field takes advantage of the newer HTML5 data input type. Currently this is implimented incorrectly, by way of addding the method to the core helper. I will updated this method using the correct method, which would be to extend the helper. DOH! 
