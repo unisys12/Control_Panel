@@ -20,7 +20,7 @@ class Admin extends CI_Controller {
 		$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
 		
 		$this->form_validation->set_rules('username', 'Username:', 
-											'trim|required|min_length[5]|max_length[25]|xss_clean');
+											'trim|required|min_length[5]|max_length[25]');
 
 		$this->form_validation->set_rules('password', 'Password:', 
 											'trim|required|min_length[5]|max_length[42]');
@@ -49,6 +49,18 @@ class Admin extends CI_Controller {
 			'email' => $email
 			);
 			$this->session->set_userdata($session);	
+
+			$cookie = array(
+				'name' => 'Rayco_Supper_Chocalote_Chip', 
+				'value' => $this->input->post('username'), 
+				'expire' => '720000', 
+				'domain' => 'raycocopiers.com', 
+				'path' => '/',
+				'prefix' => 'Rayco_', 
+				'secure' => TRUE
+				);
+
+			$this->input->set_cookie($cookie);
 
 			$this->home_panel();
 		}		
