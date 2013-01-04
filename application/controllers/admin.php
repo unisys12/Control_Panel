@@ -48,19 +48,7 @@ class Admin extends CI_Controller {
 			'username' => $username,
 			'email' => $email
 			);
-			$this->session->set_userdata($session);	
-
-			$cookie = array(
-				'name' => 'Rayco_Supper_Chocalote_Chip', 
-				'value' => $this->input->post('username'), 
-				'expire' => '720000', 
-				'domain' => 'raycocopiers.com', 
-				'path' => '/',
-				'prefix' => 'Rayco_', 
-				'secure' => TRUE
-				);
-
-			$this->input->set_cookie($cookie);
+			$this->session->set_userdata($session);
 
 			$this->home_panel();
 		}		
