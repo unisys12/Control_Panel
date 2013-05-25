@@ -27,7 +27,7 @@ class Admin extends CI_Controller {
 
 		$username = $this->input->post('username');
 		$password = $this->input->post('password');
-		// $email = $this->users->users_email($username);
+
 		$valid_session = $this->users->check_session($username);
 
 		$data = array(
@@ -44,6 +44,7 @@ class Admin extends CI_Controller {
 		}
 		else
 		{
+			$email = $this->users->users_email($username);
 			$session = array(
 			'username' => $username,
 			'email' => $email
