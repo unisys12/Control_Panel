@@ -8,7 +8,7 @@ class Admin extends CI_Controller {
 
 		$this->load->helper('form');
 		$this->load->library(array('parser'));
-		
+
 	}
 
 	/**
@@ -18,22 +18,22 @@ class Admin extends CI_Controller {
 	{
 		$this->load->library('form_validation');
 		$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
-		
-		$this->form_validation->set_rules('username', 'Username:', 
+
+		$this->form_validation->set_rules('username', 'Username:',
 											'trim|required|min_length[5]|max_length[25]');
 
-		$this->form_validation->set_rules('password', 'Password:', 
+		$this->form_validation->set_rules('password', 'Password:',
 											'trim|required|min_length[5]|max_length[42]');
 
 		$username = $this->input->post('username');
 		$password = $this->input->post('password');
-		$email = $this->users->users_email($username);
+		// $email = $this->users->users_email($username);
 		$valid_session = $this->users->check_session($username);
 
 		$data = array(
 			'title' => 'Rayco Administration Panel',
 			'name' => '',
-			'css' => base_url('css/style.css')	
+			'css' => base_url('css/style.css')
 			);
 
 		if($this->form_validation->run() == FALSE || $valid_session == FALSE)
@@ -41,29 +41,29 @@ class Admin extends CI_Controller {
 			$this->load->view('includes/head', $data);
 			$this->load->view('admin/login_view', $data);
 			$this->load->view('includes/footer');
-		}	
+		}
 		else
 		{
 			$session = array(
 			'username' => $username,
 			'email' => $email
 			);
-			$this->session->set_userdata($session);	
+			$this->session->set_userdata($session);
 
 			$cookie = array(
-				'name' => 'Rayco_Supper_Chocalote_Chip', 
-				'value' => $this->input->post('username'), 
-				'expire' => '720000', 
-				'domain' => 'raycocopiers.com', 
+				'name' => 'Rayco_Supper_Chocalote_Chip',
+				'value' => $this->input->post('username'),
+				'expire' => '720000',
+				'domain' => 'raycocopiers.com',
 				'path' => '/',
-				'prefix' => 'Rayco_', 
+				'prefix' => 'Rayco_',
 				'secure' => TRUE
 				);
 
 			$this->input->set_cookie($cookie);
 
 			$this->home_panel();
-		}		
+		}
 	}
 
 	public function home_panel()
@@ -73,9 +73,9 @@ class Admin extends CI_Controller {
 		$email = $this->users->users_email($username);
 		$valid_user = $this->users->check_users($username, $password);
 		$valid_session = $this->users->check_session($username);
-		
+
 		$data = array(
-			'title' => 'Rayco Administration Panel for ',			
+			'title' => 'Rayco Administration Panel for ',
 			'name' => $this->users->users_name($username),
 			'css' => base_url('css/style.css'),
 			'message' => 'The username and password you entered is invaild!',
@@ -83,8 +83,8 @@ class Admin extends CI_Controller {
 			);
 
 		if($valid_user == TRUE || $valid_session == TRUE)
-		{	
-		 	{ 				
+		{
+		 	{
 				$this->load->view('includes/head', $data);
 				$this->load->view('includes/header');
 				$this->load->view('admin/admin_view', $data);
@@ -112,19 +112,19 @@ class Admin extends CI_Controller {
 
 		$this->load->library('form_validation');
 		$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
-		
+
 		$this->form_validation->set_rules('name', 'Full Name:', 'trim|required|min_length[5]|max_length[25]|xss_clean');
 
-		$this->form_validation->set_rules('username', 'Username:', 
+		$this->form_validation->set_rules('username', 'Username:',
 											'trim|required|min_length[5]|max_length[25]|xss_clean');
 
-		$this->form_validation->set_rules('password', 'Password:', 
+		$this->form_validation->set_rules('password', 'Password:',
 											'trim|required|min_length[5]|max_length[42]|matches[password_conf]|sha1');
 
-		$this->form_validation->set_rules('password_conf', 'Confirm Password:', 
+		$this->form_validation->set_rules('password_conf', 'Confirm Password:',
 											'trim|required|min_length[5]|max_length[42]|sha1');
 
-		$this->form_validation->set_rules('email', 'Email:', 
+		$this->form_validation->set_rules('email', 'Email:',
 											'trim|required|min_length[5]|max_length[35]|valid_email|xss_clean');
 
 		if($this->form_validation->run() == FALSE)
@@ -141,7 +141,7 @@ class Admin extends CI_Controller {
 	}
 
 	/**
-	 * Registration Confirmation 
+	 * Registration Confirmation
 	 */
 	public function registered()
 	{
@@ -159,7 +159,7 @@ class Admin extends CI_Controller {
 
 		$add_user = $this->users->add_user($name, $username, $password, $email);
 
-		if($add_user == TRUE){ 
+		if($add_user == TRUE){
 			$this->load->view('includes/head', $data);
 			$this->load->view('includes/header');
 			$this->parser->parse('templates/user_confirmation', $data);
@@ -177,9 +177,9 @@ class Admin extends CI_Controller {
 	{
 		$this->load->library('form_validation');
 		$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
-		
+
 		$this->form_validation->set_rules('name', 'What is your name:', 'trim|required|min_length[5]|max_length[25]|xss_clean');
-		$this->form_validation->set_rules('email', 'What is your E-Mail:', 
+		$this->form_validation->set_rules('email', 'What is your E-Mail:',
 											'trim|required|min_length[5]|max_length[35]|valid_email|xss_clean');
 
 		$data = array(
@@ -198,7 +198,7 @@ class Admin extends CI_Controller {
 		{
 			$this->fetched();
 		}
-		
+
 	}
 
 	/**
@@ -210,7 +210,7 @@ class Admin extends CI_Controller {
 		$name = $this->input->post('name');
 		$email = $this->input->post('email');
 		$password = $this->users->retrieve_password($name, $email);
-		
+
 		$data = array(
 			'css' => base_url('css/style.css'),
 			'title' => 'Password Retrieved',
