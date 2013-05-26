@@ -7,3 +7,5 @@ echo form_date('starting_range', '') . "<br />";
 echo form_date('ending_range', '');
 echo form_submit('submit', 'Submit');
 echo form_close();
+echo "<br>";
+echo "<p>" . $msg . "</p>";

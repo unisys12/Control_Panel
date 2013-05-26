@@ -36,7 +36,7 @@ class Timesheet extends CI_Controller{
 			$this->load->view('timesheet/time_entry', $data);
 			$this->load->view('includes/footer');
 		}else{
-			
+
 		}
 	}
 
@@ -57,15 +57,16 @@ class Timesheet extends CI_Controller{
 		$holiday = $this->input->post('holiday');
 		$submit = $this->input->post('submit');
 
-		$data = array(
-			'title' => 'Time Entry Submitted for ',
-			'name' => $name,
-			'css' => base_url('css/style.css')
-			);
-
 		if(isset($submit)){
 			$q = $this->timesheet_model->insert($name, $date, $wrkHrs, $vacHrs, $sickHrs, $holiday);
 		}
+
+		$data = array(
+			'title' => 'Time Entry Submitted for ',
+			'name' => $name,
+			'css' => base_url('css/style.css'),
+			'msg' => $q
+			);
 
 		//if($this->form_validation->run() == FALSE){
 			$this->load->view('includes/head', $data);
@@ -89,7 +90,7 @@ class Timesheet extends CI_Controller{
 			'css' => base_url('/css/style.css'),
 			'edit' => $this->timesheet_model->edit_display($id)
 		);
-		
+
 		$this->load->view('includes/head', $data);
 		$this->load->view('includes/header');
 		$this->load->view('timesheet/timesheet_edit', $data);
@@ -116,7 +117,7 @@ class Timesheet extends CI_Controller{
 			'css' => base_url('/css/style.css')
 		);
 
-		if($start == TRUE && $end == TRUE){ 
+		if($start == TRUE && $end == TRUE){
 		$q = $this->timesheet_model->edit_update($name, $date, $wrkHrs, $vacHrs, $sickHrs, $holiday);
 		}
 		$this->load->view('includes/head', $data);
@@ -165,15 +166,15 @@ class Timesheet extends CI_Controller{
 		$data = array(
 			'title' => "Rayco Time Summary for ",
 			'name' => $name,
-			'css' => base_url('css/print.css'),	
+			'css' => base_url('css/print.css'),
 			'starting_range' => $this->input->post('starting_range'),
-			'ending_range' => $this->input->post('ending_range'),	
+			'ending_range' => $this->input->post('ending_range'),
 			'time' => $this->timesheet_model->timesheet_summary($starting_range, $ending_range),
 			'wrkTotal' => $this->timesheet_model->timesheet_work_total(),
 			'vacTotal' => $this->timesheet_model->timesheet_vacation_total(),
 			'sickTotal' => $this->timesheet_model->timesheet_sick_total(),
 			'holidayTotal' => $this->timesheet_model->timesheet_holiday_total(),
-			'total' => $this->timesheet_model->total_payable_hours()	
+			'total' => $this->timesheet_model->total_payable_hours()
 			);
 
 		$this->load->view('includes/head', $data);

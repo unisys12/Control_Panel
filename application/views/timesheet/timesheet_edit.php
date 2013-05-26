@@ -42,6 +42,9 @@
 	echo form_fieldset_close();
 	echo form_close();
 	echo "<br>";
-	
+
+	echo "<pre>" . $this->db->last_query() . "</pre>";
+
 	?>
+
 </section>
