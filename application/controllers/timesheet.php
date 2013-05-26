@@ -35,9 +35,8 @@ class Timesheet extends CI_Controller{
 			$this->load->view('includes/header');
 			$this->load->view('timesheet/time_entry', $data);
 			$this->load->view('includes/footer');
-		}else{
-
 		}
+
 	}
 
 	public function time_submit()
