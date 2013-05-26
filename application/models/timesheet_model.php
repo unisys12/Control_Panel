@@ -19,7 +19,7 @@ class Timesheet_model extends CI_Model{
 		if($dateQuery->num_rows() > 0)
 		{
 			// Set an error message
-			$msg = "A timesheet entry for the date " . $date . " has already been entered!";
+			$msg = "A timesheet entry for the date <span class='error'>" . $date . "</span> has already been entered!";
 
 			// Return the error message
 			return $msg;
