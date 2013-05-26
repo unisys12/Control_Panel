@@ -1,7 +1,6 @@
-
 	<section id="panel" class="flexbox">
 		<article id="panel_display">
-				<?php 
+				<?php
 				$mileage_attr = array('class'=>'mileage_form');
 				echo form_open('mileage/mileage_submit', $mileage_attr);
 				echo form_fieldset('Enter Your Milegae');
@@ -25,4 +24,3 @@
 				?>
 		</article>
 	</section>
-
