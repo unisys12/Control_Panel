@@ -13,9 +13,31 @@ class Mileage_model extends CI_Model{
 
 	public function start($name, $date, $start, $end, $notes){
 
-		/* Used to insert all data entries in one query. Only used if all 
-		 * fields have something entered in them. 
-		 */ 
+		/** Check the date that the client is trying to insert for,
+		  * see if it already exists. If so, check if a start entry
+		  * has already been made. If so, return a error message.
+		  * If not, then perform the insert statment.
+		  */
+
+		//Prepare the query
+		$checkQuery = "SELECT * FROM `mileage` WHERE `date` LIKE ? AND `name` = ? OR `start` = ?";
+
+		// Run the check query, assign the results to the var $dateQuery
+		$mileageQuery = $this->db->query($checkQuery, array($date, $name, $start));
+
+		if($mileageQuery->num_rows() > 0)
+		{
+			// Set an error message
+			$msg = "A starting mileage of <span class='error'>" . $start . "</span> for the date <span class='error'> " . $date . " </span> has already been entered!";
+
+			// Return the error message
+			return $msg;
+		}
+		else
+		{
+		/* Used to insert all data entries in one query. Only used if all
+		 * fields have something entered in them.
+		 */
 		$data = array(
 			'name' => $name,
 			'date' => $date,
@@ -25,11 +47,39 @@ class Mileage_model extends CI_Model{
 			);
 
 		$query = $this->db->insert('mileage', $data);
-		
+
+		$msg = "Thanks for submitting your starting mileage of " . $mileage . " for " . $date . ".";
+
+		return $msg;
+		}
+
 	}
 
 	public function end($name, $date, $end, $notes){
-		/* Used to update an entry when a starting odometer is 
+
+		/** Check the date that the client is trying to insert for,
+		  * see if it already exists. If so, check if a start entry
+		  * has already been made. If so, return a error message.
+		  * If not, then perform the insert statment.
+		  */
+
+		//Prepare the query
+		$checkQuery = "SELECT * FROM `mileage` WHERE `date` LIKE ? AND `name` = ? AND `end` = ?";
+
+		// Run the check query, assign the results to the var $dateQuery
+		$mileageQuery = $this->db->query($checkQuery, array($date, $name, $end));
+
+		if($mileageQuery->num_rows() > 0)
+		{
+			// Set an error message
+			$msg = "A ending mileage of <span class='error'>" . $mileage . "</span> for the date <span class='error'>" . $date . "</span> has already been entered!";
+
+			// Return the error message
+			return $msg;
+		}
+		else
+		{
+		/* Used to update an entry when a starting odometer is
 		 * entered in the morning and the ending odometer is entered later
 		 * that afternoon.
 		 */
@@ -43,31 +93,37 @@ class Mileage_model extends CI_Model{
 		$this->db->where('name', $name)->where('date', $date);
 		$this->db->update('mileage', $data);
 
+		// Set a success message
+		$msg = "Thanks for submitting a ending mileage of " . $end . " for " . $date . ".";
+
+		// Return the success message
+		return $msg;
+		}
 	}
 
 	public function summary($starting_range, $ending_range){
 
-		$query = "SELECT `id`, `date` ,  `start`,  `end`, 
+		$query = "SELECT `id`, `date` ,  `start`,  `end`,
         		 SUM(END - START ) AS `total`
-				 FROM  `mileage` 
-				 WHERE  `date` 
+				 FROM  `mileage`
+				 WHERE  `date`
 				 BETWEEN  ?
 				 AND  ?
-				 GROUP BY `date` 
-				 LIMIT 0 , 30";	
+				 GROUP BY `date`
+				 LIMIT 0 , 30";
 
 		$mileage = $this->db->query($query, array($starting_range, $ending_range));
-		
+
 		return $mileage;
 	}
-	
+
 	public function monthlyViewCreation(){
 
 	/* Creates a view, if one does not exist, or Replace the data if the view
 	 * does currently exist, and populates it with the date, starting odometer,
-	 * ending odometer. I use the SUM() aggregrite function to subtracte the 
+	 * ending odometer. I use the SUM() aggregrite function to subtracte the
 	 * ending odometer from the starting odometer, which gives me the total
-	 * miles driven for the day. 
+	 * miles driven for the day.
 	 */
 
 		$q = "CREATE OR REPLACE VIEW daily_summary AS
@@ -101,14 +157,14 @@ class Mileage_model extends CI_Model{
 
 		$query = $this->db->get_where('mileage', array('id' => $id));
 		if ($query->num_rows() > 0){
-		   $row = $query->row(); 
+		   $row = $query->row();
 		   return $row;
 		}
 	}
 
-	public function edit_update($name, $date, $start, $end, $notes){		
+	public function edit_update($name, $date, $start, $end, $notes){
 
-		$query = "UPDATE `mileage` SET 
+		$query = "UPDATE `mileage` SET
 						`start`= $start,
 						`end`= $end,
 						`notes`= '$notes'

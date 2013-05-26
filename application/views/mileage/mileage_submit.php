@@ -1,8 +1,11 @@
 <section id="panel" class="flexbox">
 	<article id="panel_display">
-		<p>Thanks for submitting your mileage for today... </p>
+		<?php
+		echo "<br>";
+		echo "<p>" . $msg . "</p>";
+		?>
 		<br />
-		
+
 		<div class="summary_form">
 		<h2>Mileage Summary</h2>
 		<?php
@@ -11,9 +14,9 @@
 		echo form_date('ending_range', '');
 		echo form_submit('submit', 'Submit');
 		echo form_close();
-		
-		echo "<br />";	
-		?>         
+
+		echo "<br />";
+		?>
 		</div>
 
 	</article>
