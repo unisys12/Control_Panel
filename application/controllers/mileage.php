@@ -27,7 +27,6 @@ class Mileage extends CI_Controller{
 			$data['name'] = "Employees Only!";
 		}
 
-		$data['css'] = base_url('/css/style.css'); // Loads the correct stylesheet for the page
 		$submit = $this->input->post('submit');
 		$data['name'] = $name;
 
@@ -77,7 +76,6 @@ class Mileage extends CI_Controller{
 
 		//Load data variables for this page
 		$data = array(
-			'css' => base_url('/css/style.css'),
 			'title' => 'Rayco Mileage Summary for ',
 			'name' => $name,
 			'msg' => $q
@@ -103,7 +101,6 @@ class Mileage extends CI_Controller{
 		$ending_range = $this->input->post('ending_range');
 
 		$data = array(
-			'css' => base_url('/css/style.css'),
 			'mileage' => $this->mileage_model->summary($starting_range, $ending_range),
 			'monthly_total' => $this->mileage_model->monthly_total(),
 			'title' => 'Rayco Mileage Summary for',
@@ -130,7 +127,6 @@ class Mileage extends CI_Controller{
 		$ending_range = $this->input->post('ending_range');
 
 		$data = array(
-			'css' => base_url('/css/print.css'),
 			'title' => "Rayco Mileage Summary for ",
 			'starting_range' => $starting_range,
 			'ending_range' => $ending_range,
@@ -157,7 +153,6 @@ class Mileage extends CI_Controller{
 		$data = array(
 			'title' => 'Edit Mileage Entry for ',
 			'name' => $name,
-			'css' => base_url('/css/style.css'),
 			'edit' => $this->mileage_model->edit_display($id)
 		);
 
@@ -182,7 +177,6 @@ class Mileage extends CI_Controller{
 		$data = array(
 			'title' => 'Mileage Entry Edited for ',
 			'name' => $name,
-			'css' => base_url('/css/style.css')
 		);
 
 		if($start == TRUE && $end == TRUE){

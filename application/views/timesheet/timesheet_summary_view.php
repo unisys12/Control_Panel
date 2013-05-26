@@ -1,5 +1,5 @@
-<section id="panel" class="flexbox">
-		<div class="summary_form">
+<section class="row">
+	<article class="small-8 columns">
 		<h2>Timesheet Summary</h2>
 		<?php
 
@@ -8,11 +8,10 @@
 		echo form_date('ending_range', isset($ending_range) ? $ending_range : set_value("ending_range"));
 		echo form_submit('submit', 'Submit');
 		echo form_close();
-		
-		echo "<br />";		
-		?>         
-		</div>
-		<article id="panel_display">
+
+		echo "<br />";
+		?>
+		<article id="small-8 columns">
 			<!-- <a href="admin/mileage_print" class="icon-printer"> Print</a> -->
 			<?php
 
@@ -25,7 +24,7 @@
 			echo form_close();
 
 			//echo anchor("admin/mileage_print", ' Print', 'class="icon-printer"');
-			//echo anchor("admin/mileage_pdf", 'PDF', 'class="icon-file-pdf"'); 
+			//echo anchor("admin/mileage_pdf", 'PDF', 'class="icon-file-pdf"');
 			echo "<br><br>";
 			echo "<table class='mileage-table' rules='all'>";
 			echo "<thead>";
@@ -41,7 +40,7 @@
 			foreach ($time->result() as $row){
 				echo "<td>" . $row->date . "</td>";
 				echo "<td>" . $row->wrkHrs . "</td>";
-				echo "<td>" . $row->vacHrs . "</td>"; 
+				echo "<td>" . $row->vacHrs . "</td>";
 				echo "<td>" . $row->sickHrs . "</td>";
 				echo "<td>" . $row->holiday . "</td>";
 				echo "<td>" . anchor('timesheet/time_edit/' . $row->id , 'Edit');
@@ -50,6 +49,6 @@
 			//echo "<tr><td colspan='3'><span><h6>Monthly Total</h6></span><td>" . $monthly_total . "</td></td></tr>";
 			echo "</table>";
 			?>
-
-		</article>
-	</section>
+		</aricle>
+	</article>
+</section>

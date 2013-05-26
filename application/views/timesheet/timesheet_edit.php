@@ -1,4 +1,5 @@
-<section class="timesheet">
+<section class="row">
+	<article class="small-8 columns">
 	<?php
 
 	$timesheet_attr = array('class'=>'timesheet');
@@ -46,5 +47,5 @@
 	echo "<pre>" . $this->db->last_query() . "</pre>";
 
 	?>
-
+	</article>
 </section>

@@ -1,5 +1,5 @@
-<section id="panel" class="flexbox">
-	<article id="panel_display">
+<section class="row">
+	<article class="small-8 columns">
 		<?php
 		echo "<br>";
 		echo "<p>" . $msg . "</p>";

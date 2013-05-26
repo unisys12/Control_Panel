@@ -1,18 +1,16 @@
-<section id="panel" class="flexbox">
-		<article id="panel_display">
-				<?php 
-
-
+<section class="row">
+		<article class="small-8 columns">
+				<?php
 				$mileage_attr = array('class'=>'mileage_form');
 				echo form_open('mileage/mileage_correction', $mileage_attr);
 				echo form_fieldset('Edit Your Milegae');
 				echo form_label('Date: ') . "<br />";
 				echo form_date('date', $edit->date) . "<br />"; // Fill value with date value from mileage summary
 				echo form_error('date');
-				echo form_label('Starting Odometer: '); 
+				echo form_label('Starting Odometer: ');
 				echo form_input('start', $edit->start) . "<br />"; // Fill value with data from mileage summary
 				echo form_error('start');
-				echo form_label('Ending Odometer: '); 
+				echo form_label('Ending Odometer: ');
 				echo form_input('end', $edit->end) . "<br />"; // Fill value with data from mileage summary
 				echo form_error('end');
 				echo form_label('Notes: ') . "<br />";

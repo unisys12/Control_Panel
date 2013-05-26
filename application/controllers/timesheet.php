@@ -25,7 +25,6 @@ class Timesheet extends CI_Controller{
 		$name = $this->users->users_name($username);
 
 		$data = array(
-			'css' => base_url('css/style.css'),
 			'title' => 'Rayco Timesheet for ',
 			'name' => $name
 			);
@@ -63,7 +62,6 @@ class Timesheet extends CI_Controller{
 		$data = array(
 			'title' => 'Time Entry Submitted for ',
 			'name' => $name,
-			'css' => base_url('css/style.css'),
 			'msg' => $q
 			);
 
@@ -86,7 +84,6 @@ class Timesheet extends CI_Controller{
 		$data = array(
 			'title' => 'Edit Time Entry for ',
 			'name' => $name,
-			'css' => base_url('/css/style.css'),
 			'edit' => $this->timesheet_model->edit_display($id)
 		);
 
@@ -113,7 +110,6 @@ class Timesheet extends CI_Controller{
 		$data = array(
 			'title' => 'Time Entry Edited for ',
 			'name' => $name,
-			'css' => base_url('/css/style.css')
 		);
 
 		if($start == TRUE && $end == TRUE){
@@ -141,7 +137,6 @@ class Timesheet extends CI_Controller{
 		$data = array(
 			'title' => "Rayco Timesheet Summary for ",
 			'name' => $name,
-			'css' => base_url('css/style.css'),
 			'time' => $this->timesheet_model->timesheet_summary($starting_range, $ending_range),
 			'starting_range' => $this->input->post('starting_range'),
 			'ending_range' => $this->input->post('ending_range')
@@ -165,7 +160,6 @@ class Timesheet extends CI_Controller{
 		$data = array(
 			'title' => "Rayco Time Summary for ",
 			'name' => $name,
-			'css' => base_url('css/print.css'),
 			'starting_range' => $this->input->post('starting_range'),
 			'ending_range' => $this->input->post('ending_range'),
 			'time' => $this->timesheet_model->timesheet_summary($starting_range, $ending_range),
