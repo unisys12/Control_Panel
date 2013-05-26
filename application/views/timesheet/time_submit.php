@@ -1,9 +1,23 @@
-<?php
+<section id="panel" class="flexbox">
+	<article id="panel_display">
+		<?php
+		echo "<br>";
+		echo "<p>" . $msg . "</p>";
+		?>
+		<br />
 
-echo "<h3>" . "For a summary of your entered time, enter a range below." . "</h3>";
+		<div class="summary_form">
+		<h2>Mileage Summary</h2>
+		<?php
+		echo form_open('timesheet/time_summary', '');
+		echo form_date('starting_range', '') . "<br />";
+		echo form_date('ending_range', '');
+		echo form_submit('submit', 'Submit');
+		echo form_close();
 
-echo form_open('timesheet/time_summary', '');
-echo form_date('starting_range', '') . "<br />";
-echo form_date('ending_range', '');
-echo form_submit('submit', 'Submit');
-echo form_close();
+		echo "<br />";
+		?>
+		</div>
+
+	</article>
+</section>

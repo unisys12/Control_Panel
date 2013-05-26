@@ -19,7 +19,7 @@ class Mileage extends CI_Controller{
 		$username = $this->session->userdata('username');
 		$name = $this->users->users_name($username);
 
-		if(isset($name)){ 
+		if(isset($name)){
 		$data['title'] = "Rayco Mileage Log for ";
 		$data['name'] = $name;
 		} else {
@@ -50,8 +50,8 @@ class Mileage extends CI_Controller{
 
 		$submit = $this->input->post('submit');
 		$date = $this->input->post('date');
-		$start = $this->input->post('start'); 
-		$end = $this->input->post('end'); 
+		$start = $this->input->post('start');
+		$end = $this->input->post('end');
 		$notes = $this->input->post('notes');
 		$username = $this->session->userdata('username');
 		$name = $this->users->users_name($username);
@@ -62,13 +62,6 @@ class Mileage extends CI_Controller{
 		$this->form_validation->set_rules('start', 'Starting Odometer', 'trim|numeric|min_length[1]|max_length[6]|xss_clean');
 		$this->form_validation->set_rules('end', 'Ending Odometer', 'trim|numeric|min_length[1]|max_length[6]|xss_clean');
 
-		//Load data variables for this page	
-		$data = array(
-			'css' => base_url('/css/style.css'),
-			'title' => 'Rayco Mileage Summary for ', 
-			'name' => $name
-			);		
-
 		if($this->form_validation->run() == FALSE){
 			$this->load->view('includes/head', $data);
 			$this->load->view('includes/header');
@@ -76,11 +69,19 @@ class Mileage extends CI_Controller{
 			$this->load->view('includes/footer');
 		}
 
-		if($submit == TRUE && $end == FALSE){ 
-			$q = $this->mileage_model->start($name, $date, $start, $end, $notes); 
+		if($submit == TRUE && $end == FALSE){
+			$q = $this->mileage_model->start($name, $date, $start, $end, $notes);
 			}else{
 			$q = $this->mileage_model->end($name, $date, $end, $notes);
-		} 
+		}
+
+		//Load data variables for this page
+		$data = array(
+			'css' => base_url('/css/style.css'),
+			'title' => 'Rayco Mileage Summary for ',
+			'name' => $name,
+			'msg' => $q
+			);
 
 		/* Load the files needed for the view */
 		$this->load->view('includes/head', $data);
@@ -100,15 +101,15 @@ class Mileage extends CI_Controller{
 		$name = $this->users->users_name($username);
 		$starting_range = $this->input->post('starting_range');
 		$ending_range = $this->input->post('ending_range');
-		
+
 		$data = array(
 			'css' => base_url('/css/style.css'),
 			'mileage' => $this->mileage_model->summary($starting_range, $ending_range),
 			'monthly_total' => $this->mileage_model->monthly_total(),
-			'title' => 'Rayco Mileage Summary for', 
+			'title' => 'Rayco Mileage Summary for',
 			'name' => $name
 			);
-		
+
 		/* Load the files needed for the view */
 		$this->load->view('includes/head', $data);
 		$this->load->view('includes/header');
@@ -159,7 +160,7 @@ class Mileage extends CI_Controller{
 			'css' => base_url('/css/style.css'),
 			'edit' => $this->mileage_model->edit_display($id)
 		);
-		
+
 		$this->load->view('includes/head', $data);
 		$this->load->view('includes/header');
 		$this->load->view('mileage/mileage_edit', $data);
@@ -177,14 +178,14 @@ class Mileage extends CI_Controller{
 		$start = $this->input->post('start');
 		$end = $this->input->post('end');
 		$notes = $this->input->post('notes');
-		
+
 		$data = array(
 			'title' => 'Mileage Entry Edited for ',
 			'name' => $name,
 			'css' => base_url('/css/style.css')
 		);
 
-		if($start == TRUE && $end == TRUE){ 
+		if($start == TRUE && $end == TRUE){
 		$q = $this->mileage_model->edit_update($name, $date, $start, $end, $notes);
 		}
 		$this->load->view('includes/head', $data);

@@ -4,32 +4,62 @@ class Timesheet_model extends CI_Model{
 
 	public function insert($name, $date, $wrkHrs, $vacHrs, $sickHrs, $holiday){
 
-		// Place the variables into an array
-		$data = array(
-				'name' => $name,
-				'date' => $date,
-				'wrkHrs' => $wrkHrs,
-				'vacHrs' => $vacHrs,
-				'sickHrs' => $sickHrs,
-				'holiday' => $holiday
-			);
+		/** Check the date that the client is trying to insert for,
+		  * see if it already exists. If so, return a error message.
+		  * If not, then perform the insert statment.
+		  */
 
-		$query = $this->db->insert('timesheet', $data);
+		//Prepare the query
+		$checkQuery = "SELECT * FROM `timesheet` WHERE `date` LIKE ? AND `name` = ?";
 
-	}	
+		// Run the check query, assign the results to the var $dateQuery
+		$dateQuery = $this->db->query($checkQuery, array($date, $name));
+
+		// If no rows are returned, perform insert actions
+		if($dateQuery->num_rows() > 0)
+		{
+			// Set an error message
+			$msg = "A timesheet entry for the date <span class='error'>" . $date . "</span> has already been entered!";
+
+			// Return the error message
+			return $msg;
+		}
+		else
+		{
+			// Place the variables into an array
+			$data = array(
+					'name' => $name,
+					'date' => $date,
+					'wrkHrs' => $wrkHrs,
+					'vacHrs' => $vacHrs,
+					'sickHrs' => $sickHrs,
+					'holiday' => $holiday
+				);
+
+			// Run the Query
+			$query = $this->db->insert('timesheet', $data);
+
+			// Set a success Message
+			$msg = "Thanks for submitting your time for " . $date . ".";
+
+			// Return the success messaage (not working by the way, for some reason)
+			return $msg;
+		}
+
+	}
 
 	public function edit_display($id){
 
 		$query = $this->db->get_where('timesheet', array('id' => $id));
 		if ($query->num_rows() > 0){
-		   $row = $query->row(); 
+		   $row = $query->row();
 		   return $row;
 		}
 	}
 
-	public function edit_update($name, $date, $wrkHrs, $vacHrs, $sickHrs, $holiday){		
+	public function edit_update($name, $date, $wrkHrs, $vacHrs, $sickHrs, $holiday){
 
-		$query = "UPDATE `timesheet` SET 
+		$query = "UPDATE `timesheet` SET
 						`name`= $name,
 						`date`= $date,
 						`wrkHrs`= $wrkHrs,
@@ -58,15 +88,15 @@ class Timesheet_model extends CI_Model{
 	}
 
 	public function timesheet_view_creation(){
-		
+
 		$query = "CREATE OR REPLACE VIEW timesheet_period_summary AS
-				 SELECT `date`, 
-        		 SUM(`wrkHrs`) AS `wrkTotal`, 
+				 SELECT `date`,
+        		 SUM(`wrkHrs`) AS `wrkTotal`,
         		 SUM(`vacHrs`) AS `vacTotal`,
         		 SUM(`sickHrs`) AS `sickTotal`,
         		 SUM(`holiday`) AS `holidayTotal`
-				 FROM  `timesheet` 
-				 WHERE  `date` 
+				 FROM  `timesheet`
+				 WHERE  `date`
 				 BETWEEN  ?
 				 AND  ?
 				 GROUP BY  `date`";
