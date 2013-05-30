@@ -6622,3 +6622,8 @@ nav li {
     padding: .25em 0;
   }
 }
+
+/* line 22, ../sass/_nav.scss */
+.error {
+  color: red;
+}
