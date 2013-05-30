@@ -6623,7 +6623,12 @@ nav li {
   }
 }
 
-/* line 22, ../sass/_nav.scss */
+/* line 1, ../sass/_feedback.scss */
 .error {
-  color: red;
+  color: #FF0000;
+}
+
+/* line 5, ../sass/_feedback.scss */
+.msg {
+  color: #6633CC;
 }
