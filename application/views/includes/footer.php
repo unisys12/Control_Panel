@@ -25,5 +25,11 @@
 	});
 </script>
 
+<?php
+
+if($mileage == "mileage"){
+	echo '<script src="' . base_url('javascripts/mileage_reciept.js') . '"></script>';
+}
+?>
 </body>
 </html>
