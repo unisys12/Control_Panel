@@ -1,12 +1,12 @@
-<section class="summary">
-	<header class="header">
+<section class="row">
+	<header class="8-columns center">
 		<h2>Rayco Timesheet for <?php echo $name ?></h2>
 		<h6>for the date range of <?php echo $starting_range ?> through <?php echo $ending_range ?></h6>
 	</header>
-	
+
 	<article>
 
-		<?php	
+		<?php
 		echo "<table class='print' rules='all'>";
 		echo "<thead>";
 		echo "<tr>";
@@ -17,12 +17,12 @@
 		echo "<th>" . 'Holidays' . "</th>";
 		echo "<th>" . 'Payable Totals' . "</th>";
 		echo "</tr>";
-		echo "</thead><tr>";	
+		echo "</thead><tr>";
 
 		foreach ($time->result() as $row){
 				echo "<td>" . $row->date . "</td>";
 				echo "<td>" . $row->wrkHrs . "</td>";
-				echo "<td>" . $row->vacHrs . "</td>"; 
+				echo "<td>" . $row->vacHrs . "</td>";
 				echo "<td>" . $row->sickHrs . "</td>";
 				echo "<td>" . $row->holiday . "</td>";
 				echo "</tr>";

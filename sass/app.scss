@@ -12,7 +12,12 @@
 
 // Add styles for nav menu
 @import 'nav';
+
+// Add styles for messages and feedback
 @import 'feedback';
+
+// Add styles to print views
+@import 'print';
 
 // Import specific parts of Foundation by commenting the import "foundation"
 // and uncommenting what you want below. You must uncomment the following if customizing

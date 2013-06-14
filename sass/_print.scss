@@ -1,0 +1,15 @@
+@mixin center {
+	margin: 0 auto;
+}
+
+
+.signature {
+	margin-bottom: 1em;
+	width: 25%;
+	height: 2em;
+	border-bottom: 1px solid black;
+
+	&:before {
+		content: 'Signature: ';
+	}
+}

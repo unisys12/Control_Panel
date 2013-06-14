@@ -6632,3 +6632,15 @@ nav li {
 .msg {
   color: #6633CC;
 }
+
+/* line 6, ../sass/_print.scss */
+.signature {
+  margin-bottom: 1em;
+  width: 25%;
+  height: 2em;
+  border-bottom: 1px solid black;
+}
+/* line 12, ../sass/_print.scss */
+.signature:before {
+  content: 'Signature: ';
+}
