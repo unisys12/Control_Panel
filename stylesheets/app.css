@@ -6623,6 +6623,11 @@ nav li {
   }
 }
 
+/* line 1, ../sass/_mileage_form.scss */
+#reciept_label {
+  display: inline;
+}
+
 /* line 1, ../sass/_feedback.scss */
 .error {
   color: #FF0000;
