@@ -31,9 +31,6 @@
 			echo form_input('end') . "<br />";
 			echo form_error('end');
 
-			echo form_label('Add Reciept to Todays Report: ', 'reciept', $reciept_label);
-			echo form_file($reciept_input);
-
 			echo form_label('Notes: ') . "<br />";
 			echo form_textarea('notes', '', '') . "<br />";
 			echo form_error('notes');

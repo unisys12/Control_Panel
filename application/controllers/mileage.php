@@ -29,8 +29,6 @@ class Mileage extends CI_Controller{
 
 		$submit 					= $this->input->post('submit');
 		$data['name'] 		= $name;
-		//$data['js'] 			= 'onChange="uploadReceipt()"';
-		$data['mileage'] 	= $this->uri->segment(1);
 
 		//If a username is found in the session, load the view. If not, rediect to home page
 		if($username !== FALSE){
