@@ -3,6 +3,9 @@
 		<?php
 		echo "<br>";
 		echo "<p>" . $msg . "</p>";
+
+
+
 		?>
 		<br />
 

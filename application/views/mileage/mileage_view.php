@@ -6,9 +6,8 @@
 
 			'name'        => 'reciept',
 	    'id'          => 'reciept',
-	    'value'       => 'accept',
-	    'checked'     => FALSE,
-	    'js'          => 'onChange="uploadReceipt()"'
+	    'value'       => 'Reciept'
+	    //'js'          => 'onChange="uploadReceipt()"'
 
 			);
 
@@ -33,7 +32,7 @@
 			echo form_error('end');
 
 			echo form_label('Add Reciept to Todays Report: ', 'reciept', $reciept_label);
-			echo form_checkbox($reciept_input);
+			echo form_file($reciept_input);
 
 			echo form_label('Notes: ') . "<br />";
 			echo form_textarea('notes', '', '') . "<br />";

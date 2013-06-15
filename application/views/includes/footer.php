@@ -27,8 +27,10 @@
 
 <?php
 
-if($mileage == "mileage"){
+if(isset($mileage)){
 	echo '<script src="' . base_url('javascripts/mileage_reciept.js') . '"></script>';
+} else {
+	echo '';
 }
 ?>
 </body>

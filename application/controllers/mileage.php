@@ -9,6 +9,7 @@ class Mileage extends CI_Controller{
 		$this->load->model('mileage_model');
 		$this->load->helper('form');
 		$this->load->library('parser');
+		$this->load->library('fileinfo');
 	}
 
 	public function index(){
@@ -27,16 +28,17 @@ class Mileage extends CI_Controller{
 			$data['name'] = "Employees Only!";
 		}
 
-		$submit = $this->input->post('submit');
-		$data['name'] = $name;
-		$data['js'] = 'onChange="uploadReceipt()"';
+		$submit 					= $this->input->post('submit');
+		$data['name'] 		= $name;
+		//$data['js'] 			= 'onChange="uploadReceipt()"';
+		$data['mileage'] 	= $this->uri->segment(1);
 
 		//If a username is found in the session, load the view. If not, rediect to home page
 		if($username !== FALSE){
 			$this->load->view('includes/head', $data);
 			$this->load->view('includes/header');
 			$this->load->view('mileage/mileage_view', $data);
-			$this->load->view('includes/footer');
+			$this->load->view('includes/footer', $data);
 
 		}else{
 			redirect('');
@@ -47,6 +49,11 @@ class Mileage extends CI_Controller{
 		/* Load any helpers for this page */
 		$this->load->helper('form');
 		$this->load->library('form_validation');
+		$config = array(
+			'upload_path' => '/reciept_imgs'
+			);
+
+		$this->load->library('upload', $config);
 
 		$submit = $this->input->post('submit');
 		$date = $this->input->post('date');
