@@ -213,12 +213,5 @@ class Mileage extends CI_Controller{
 
 	}
 
-	public function reciept_upload($file)
-	{
-
-		$file = $_FILES['receipt'];
-		$file_size = File::getFilesize($file)['size'];
-
-	}
 
 }
