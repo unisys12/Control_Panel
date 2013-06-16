@@ -29,6 +29,7 @@ class Mileage extends CI_Controller{
 
 		$submit 					= $this->input->post('submit');
 		$data['name'] 		= $name;
+		$data['mileage']  = $this->uri->segment(1);
 
 		//If a username is found in the session, load the view. If not, rediect to home page
 		if($username !== FALSE){
@@ -74,18 +75,41 @@ class Mileage extends CI_Controller{
 			$q = $this->mileage_model->end($name, $date, $end, $notes);
 		}
 
+		// File Upload Operations
+		if(isset($_FILES['receipt']))
+		{
+			// Assign the contents of the $_FILES global to an var
+			$file = $_FILES['receipt'];
+
+			// Use getimagesize() to get MIME content, since we should only deal with images
+			$type = getimagesize($_FILES['receipt']['tmp_name']);
+
+			// If getimagesize cannot return a MIME type, then the file is not a image. Display message to user
+			if(!$type['mime'])
+			{
+				$data['upload_msg'] = "<span class='error'>If you are trying to upload a receipt, the file must be a image format.</span>";
+			}
+			else
+			{
+				// Move the file from it's temp location to it's home on the server and display a message to the user.
+				move_uploaded_file($_FILES['receipt']['tmp_name'], 'receipts' . '/' . $_FILES['receipt']['name']);
+				$data['upload_msg'] = "Your receipt was successfully uploaded.";
+			}
+
+		}
+
+
 		//Load data variables for this page
-		$data = array(
-			'title' => 'Rayco Mileage Summary for ',
-			'name' => $name,
-			'msg' => $q
-			);
+		$data['title'] = 'Rayco Mileage Summary for ';
+		$data['name'] = $name;
+		$data['msg']  = $q;
+		$data['mileage']  = $this->uri->segment(1);
 
 		/* Load the files needed for the view */
 		$this->load->view('includes/head', $data);
 		$this->load->view('includes/header');
 		$this->load->view('mileage/mileage_submit');
-		$this->load->view('includes/footer');
+		$this->load->view('includes/footer', $data);
 	}
 
 	public function mileage_summary()
@@ -186,6 +210,14 @@ class Mileage extends CI_Controller{
 		$this->load->view('includes/header');
 		$this->load->view('mileage/mileage_edit_submit', $data);
 		$this->load->view('includes/footer');
+
+	}
+
+	public function reciept_upload($file)
+	{
+
+		$file = $_FILES['receipt'];
+		$file_size = File::getFilesize($file)['size'];
 
 	}
 

@@ -3,9 +3,7 @@
 		<?php
 		echo "<br>";
 		echo "<p>" . $msg . "</p>";
-
-
-
+		echo  $upload_msg . "</span>" ;
 		?>
 		<br />
 

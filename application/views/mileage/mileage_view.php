@@ -2,20 +2,20 @@
 	<article class="small-8 columns">
 			<?php
 			$mileage_attr = array('class'=>'mileage_form');
-			$reciept_input = array(
+			$receipt_input = array(
 
-			'name'        => 'reciept',
-	    'id'          => 'reciept',
-	    'value'       => 'Reciept'
-	    //'js'          => 'onChange="uploadReceipt()"'
+			'name'        => 'receipt',
+	    'id'          => 'receipt',
+	    'value'       => 'Receipt'
+
+			);
+
+			$receipt_label = array(
+
+				'id'  => 'receipt_label'
 
 			);
 
-			$reciept_label = array(
-
-				'id'  => 'reciept_label'
-
-			);
 			echo form_open_multipart('mileage/mileage_submit', $mileage_attr);
 			echo form_fieldset('Enter Your Milegae');
 
@@ -30,6 +30,9 @@
 			echo form_label('Ending Odometer: ');
 			echo form_input('end') . "<br />";
 			echo form_error('end');
+
+			echo form_label('Add Receipt to Todays Report: ', 'receipt', $receipt_label);
+			echo form_file($receipt_input);
 
 			echo form_label('Notes: ') . "<br />";
 			echo form_textarea('notes', '', '') . "<br />";
