@@ -11,7 +11,7 @@ class Mileage_model extends CI_Model{
 		$ending_range = $this->input->post('ending_range', TRUE);
 	}
 
-	public function start($name, $date, $start, $end, $notes){
+	public function start($name, $date, $start, $end, $notes, $receipt_url){
 
 		/** Check the date that the client is trying to insert for,
 		  * see if it already exists. If so, check if a start entry
@@ -43,7 +43,8 @@ class Mileage_model extends CI_Model{
 			'date' => $date,
 			'start' => $start,
 			'end' => $end,
-			'notes' => $notes
+			'notes' => $notes,
+			'receipt_url' => $receipt_url
 			);
 
 		$query = $this->db->insert('mileage', $data);
@@ -55,7 +56,7 @@ class Mileage_model extends CI_Model{
 
 	}
 
-	public function end($name, $date, $end, $notes){
+	public function end($name, $date, $end, $notes, $receipt_url){
 
 		/** Check the date that the client is trying to insert for,
 		  * see if it already exists. If so, check if a start entry
@@ -87,7 +88,8 @@ class Mileage_model extends CI_Model{
 			'name' => $name,
 			'date' => $date,
 			'end' => $end,
-			'notes' => $notes
+			'notes' => $notes,
+			'receipt_url' => $receipt_url
 			);
 
 		$this->db->where('name', $name)->where('date', $date);
@@ -162,12 +164,13 @@ class Mileage_model extends CI_Model{
 		}
 	}
 
-	public function edit_update($name, $date, $start, $end, $notes){
+	public function edit_update($name, $date, $start, $end, $notes, $receipt_url){
 
 		$query = "UPDATE `mileage` SET
 						`start`= $start,
 						`end`= $end,
-						`notes`= '$notes'
+						`notes`= $notes,
+						`receipt_url` = $receipt_url,
 						WHERE `date`= ?
 						AND `name` = '$name' ";
 

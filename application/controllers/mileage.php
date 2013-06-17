@@ -29,14 +29,13 @@ class Mileage extends CI_Controller{
 
 		$submit 					= $this->input->post('submit');
 		$data['name'] 		= $name;
-		$data['mileage']  = $this->uri->segment(1);
 
 		//If a username is found in the session, load the view. If not, rediect to home page
 		if($username !== FALSE){
 			$this->load->view('includes/head', $data);
 			$this->load->view('includes/header');
 			$this->load->view('mileage/mileage_view', $data);
-			$this->load->view('includes/footer', $data);
+			$this->load->view('includes/footer');
 
 		}else{
 			redirect('');
@@ -69,20 +68,24 @@ class Mileage extends CI_Controller{
 			$this->load->view('includes/footer');
 		}
 
-		if($submit == TRUE && $end == FALSE){
-			$q = $this->mileage_model->start($name, $date, $start, $end, $notes);
-			}else{
-			$q = $this->mileage_model->end($name, $date, $end, $notes);
-		}
-
 		// File Upload Operations
-		if(isset($_FILES['receipt']))
+
+		// First set up our upload dir to a blank string
+		$receipt_url = null;
+		// And set up a friendly default message to the user concerning file uploads
+		$data['upload_msg'] = 'You have not added a receipt at this time.';
+
+		// If our files global variable size is greater than zero, proceed
+		if($_FILES['receipt']['size'] > 0)
 		{
 			// Assign the contents of the $_FILES global to an var
 			$file = $_FILES['receipt'];
 
 			// Use getimagesize() to get MIME content, since we should only deal with images
 			$type = getimagesize($_FILES['receipt']['tmp_name']);
+
+			// Set path for receipt image to be uploaded to
+			$receipt_url = 'receipts' . '/' . $name . '/' . $_FILES['receipt']['name'];
 
 			// If getimagesize cannot return a MIME type, then the file is not a image. Display message to user
 			if(!$type['mime'])
@@ -92,12 +95,17 @@ class Mileage extends CI_Controller{
 			else
 			{
 				// Move the file from it's temp location to it's home on the server and display a message to the user.
-				move_uploaded_file($_FILES['receipt']['tmp_name'], 'receipts' . '/' . $_FILES['receipt']['name']);
+				move_uploaded_file($_FILES['receipt']['tmp_name'], $receipt_url);
 				$data['upload_msg'] = "Your receipt was successfully uploaded.";
 			}
 
 		}
 
+		if($submit == TRUE && $end == FALSE){
+			$q = $this->mileage_model->start($name, $date, $start, $end, $notes, $receipt_url);
+			}else{
+			$q = $this->mileage_model->end($name, $date, $end, $notes, $receipt_url);
+		}
 
 		//Load data variables for this page
 		$data['title'] = 'Rayco Mileage Summary for ';
@@ -204,7 +212,7 @@ class Mileage extends CI_Controller{
 		);
 
 		if($start == TRUE && $end == TRUE){
-		$q = $this->mileage_model->edit_update($name, $date, $start, $end, $notes);
+		$q = $this->mileage_model->edit_update($name, $date, $start, $end, $notes, $receipt_url);
 		}
 		$this->load->view('includes/head', $data);
 		$this->load->view('includes/header');
