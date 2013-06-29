@@ -111,7 +111,6 @@ class Mileage extends CI_Controller{
 		$data['title'] = 'Rayco Mileage Summary for ';
 		$data['name'] = $name;
 		$data['msg']  = $q;
-		$data['mileage']  = $this->uri->segment(1);
 
 		/* Load the files needed for the view */
 		$this->load->view('includes/head', $data);
@@ -205,14 +204,48 @@ class Mileage extends CI_Controller{
 		$start = $this->input->post('start');
 		$end = $this->input->post('end');
 		$notes = $this->input->post('notes');
+		$id = $this->input->post('id');
 
-		$data = array(
-			'title' => 'Mileage Entry Edited for ',
-			'name' => $name,
-		);
+		// File Upload Operations
+
+		// If our files global variable size is greater than zero, proceed
+		if($_FILES['receipt']['size'] > 0)
+		{
+			// Assign the contents of the $_FILES global to an var
+			$file = $_FILES['receipt'];
+
+			// Use getimagesize() to get MIME content, since we should only deal with images
+			$type = getimagesize($_FILES['receipt']['tmp_name']);
+
+			// Set path for receipt image to be uploaded to
+			$receipt_url = 'receipts' . '/' . $name . '/' . $_FILES['receipt']['name'];
+
+			// If getimagesize cannot return a MIME type, then the file is not a image. Display message to user
+			if(!$type['mime'])
+			{
+				$data['upload_msg'] = "<span class='error'>If you are trying to upload a receipt, the file must be a image format.</span>";
+			}
+			else
+			{
+				// Move the file from it's temp location to it's home on the server and display a message to the user.
+				move_uploaded_file($_FILES['receipt']['tmp_name'], $receipt_url);
+				$data['upload_msg'] = "Your receipt was successfully uploaded.";
+			}
+
+		}
+		else
+		{
+		// Set up our upload dir to Null
+		$receipt_url = NULL;
+		// And set up a friendly default message to the user concerning file uploads
+		$data['upload_msg'] = 'You have not added a receipt at this time.';
+		}
+
+		$data['title'] = 'Mileage Entry Edited for ';
+		$data['name'] = $name;
 
 		if($start == TRUE && $end == TRUE){
-		$q = $this->mileage_model->edit_update($name, $date, $start, $end, $notes, $receipt_url);
+		$q = $this->mileage_model->edit_update($start, $end, $notes, $receipt_url, $id);
 		}
 		$this->load->view('includes/head', $data);
 		$this->load->view('includes/header');

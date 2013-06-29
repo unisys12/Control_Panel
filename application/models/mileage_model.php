@@ -164,17 +164,16 @@ class Mileage_model extends CI_Model{
 		}
 	}
 
-	public function edit_update($name, $date, $start, $end, $notes, $receipt_url){
+	public function edit_update($start, $end, $notes, $receipt_url, $id){
 
 		$query = "UPDATE `mileage` SET
-						`start`= $start,
-						`end`= $end,
-						`notes`= $notes,
-						`receipt_url` = $receipt_url,
-						WHERE `date`= ?
-						AND `name` = '$name' ";
+						`start` = '$start',
+						`end` = '$end',
+						`notes` = '$notes',
+						`receipt_url` = '$receipt_url'
+						WHERE `id` = '$id'";
 
-		$this->db->query($query, array($date));
+		$this->db->query($query);
 
 	}
 

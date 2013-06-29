@@ -1,6 +1,10 @@
 <section class="row">
-		<article class="small-8 columns">
-		<p>Your mileage entry edit has been made ... </p>
+	<article class="small-4 medium-8 large-12 columns">
+		<?php
+		echo "<br>";
+		//echo "<p>" . $msg . "</p>";
+		echo  $upload_msg . "</span>" ;
+		?>
 		<br />
 
 		<div class="summary_form">

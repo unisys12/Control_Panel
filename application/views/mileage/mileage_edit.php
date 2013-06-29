@@ -13,7 +13,7 @@
 				);
 
 				$mileage_attr = array('class'=>'mileage_form');
-				echo form_open('mileage/mileage_correction', $mileage_attr);
+				echo form_open_multipart('mileage/mileage_correction', $mileage_attr);
 				echo form_fieldset('Edit Your Mileage');
 
 				echo form_label('Date: ') . "<br />";
@@ -34,6 +34,8 @@
 				echo form_label('Notes: ') . "<br />";
 				echo form_textarea('notes', $edit->notes, '') . "<br />";
 				echo form_error('notes');
+
+				echo form_hidden('id', $edit->id);
 
 				echo form_submit('submit', 'Submit');
 				echo form_fieldset_close();
