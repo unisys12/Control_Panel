@@ -1,4 +1,5 @@
-<section class="timesheet">
+<section class="row">
+	<article class="small-8 columns">
 	<?php
 
 	$timesheet_attr = array('class'=>'timesheet');
@@ -43,6 +44,9 @@
 	echo form_close();
 	echo "<br>";
 
-	echo anchor('timesheet/time_summary', 'Time Summary');
+	echo "<p>" . anchor('timesheet/time_summary', 'Time Summary') . "</p>";
+
+
 	?>
+</article>
 </section>

@@ -6,13 +6,11 @@
 <title> <?php echo $title . $name ?> </title>
 <meta name="viewport" content="width=device-width">
 
-<link rel="stylesheet" href="css/normalize.css" >
-<link rel="stylesheet" href= <?php echo $css ?> >
+<link rel="stylesheet" href=<?php echo base_url('stylesheets/app.css')?>>
 
-<script src= <?php echo base_url("js/vendor/modernizr.js") ?>></script>
-<script src="js/vendor/bootstrap.min.js"></script>
+<script src= <?php echo base_url("javascripts/vendor/custom.modernizr.js") ?>></script>
 
 </head>
 <body>
-	
-	<div class="main two-thirds"> <!--Main Wrapper -->
+
+	<div class="row"> <!--Main Wrapper -->

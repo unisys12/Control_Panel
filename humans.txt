@@ -1,0 +1,13 @@
+/* humanstxt.org */
+
+/* SITE */
+	Last Update: 2013-26-05
+  Standards: HTML5, CSS3, PHP5.4
+  Components: Foundation 4, Codeigniter 2.1.3
+  Software: Compass, Sublime Text 2, Git for Windows
+
+/* TEAM */
+	Everything was done by me
+	Author: Phillip Jackson
+	Twitter: @unisys12
+	Google+ : +Phillip Jackson

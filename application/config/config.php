@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://localhost/Control_Panel/';
+$config['base_url']	= 'http://localhost/control_panel/';
 
 /*
 |--------------------------------------------------------------------------

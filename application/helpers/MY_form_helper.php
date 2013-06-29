@@ -28,3 +28,22 @@ if ( ! function_exists('form_date'))
 		return "<input "._parse_form_attributes($data, $defaults).$extra." />";
 	}
 }
+
+/**
+ * File Upload Field
+ *
+ * @access	public
+ * @param	mixed
+ * @param	string
+ * @param	string
+ * @return	string
+ */
+if ( ! function_exists('form_file'))
+{
+	function form_file($data = '', $value = '', $extra = '')
+	{
+		$defaults = array('type' => 'file', 'name' => (( ! is_array($data)) ? $data : ''), 'value' => $value);
+
+		return "<input "._parse_form_attributes($data, $defaults).$extra." />";
+	}
+}

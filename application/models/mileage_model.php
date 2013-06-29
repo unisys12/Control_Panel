@@ -48,7 +48,7 @@ class Mileage_model extends CI_Model{
 
 		$query = $this->db->insert('mileage', $data);
 
-		$msg = "Thanks for submitting your starting mileage of " . $mileage . " for " . $date . ".";
+		$msg = "Thanks for submitting your starting mileage of <span class='msg'> " . $start . "</span> for <span class='msg'>" . $date . "</span>.";
 
 		return $msg;
 		}
@@ -72,7 +72,7 @@ class Mileage_model extends CI_Model{
 		if($mileageQuery->num_rows() > 0)
 		{
 			// Set an error message
-			$msg = "A ending mileage of <span class='error'>" . $mileage . "</span> for the date <span class='error'>" . $date . "</span> has already been entered!";
+			$msg = "A ending mileage of <span class='error'>" . $end . "</span> for the date <span class='error'>" . $date . "</span> has already been entered!";
 
 			// Return the error message
 			return $msg;
@@ -94,7 +94,7 @@ class Mileage_model extends CI_Model{
 		$this->db->update('mileage', $data);
 
 		// Set a success message
-		$msg = "Thanks for submitting a ending mileage of " . $end . " for " . $date . ".";
+		$msg = "Thanks for submitting a ending mileage of <span class='msg'> " . $end . "</span> for <span class='msg'> " . $date . "</span>.";
 
 		// Return the success message
 		return $msg;

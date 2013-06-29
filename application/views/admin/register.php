@@ -1,5 +1,6 @@
-<section class="main_content">
-	<?php 
+<section class="row">
+	<article class="small-8 columns">
+	<?php
 
 	echo form_open('admin/register');
 	echo form_fieldset('Registration');
@@ -30,4 +31,5 @@
 	echo form_close();
 
 	?>
+	</article>
 </section>

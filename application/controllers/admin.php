@@ -32,8 +32,7 @@ class Admin extends CI_Controller {
 
 		$data = array(
 			'title' => 'Rayco Administration Panel',
-			'name' => '',
-			'css' => base_url('css/style.css')
+			'name' => ''
 			);
 
 		if($this->form_validation->run() == FALSE || $valid_session == FALSE)
@@ -78,7 +77,6 @@ class Admin extends CI_Controller {
 		$data = array(
 			'title' => 'Rayco Administration Panel for ',
 			'name' => $this->users->users_name($username),
-			'css' => base_url('css/style.css'),
 			'message' => 'The username and password you entered is invaild!',
 			'instructions' => "The username you enter was " . $username . '<br>' . 'and the password was ' . $password .'.'
 			);
@@ -106,10 +104,7 @@ class Admin extends CI_Controller {
 	 */
 	public function register()
 	{
-		$data = array(
-			'title' => 'Registration',
-			'css' => base_url('css/style.css')
-			);
+		$data['title'] = 'Registration';
 
 		$this->load->library('form_validation');
 		$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
@@ -148,7 +143,6 @@ class Admin extends CI_Controller {
 	{
 		$data = array(
 			'title' => 'Welcome Aboard!',
-			'css' => base_url('css/style.css'),
 			'message' => 'Thanks for registering',
 			'instructions' => 'Your username and password will be sent to you, but you can login right now and get started!'
 			);
@@ -183,10 +177,7 @@ class Admin extends CI_Controller {
 		$this->form_validation->set_rules('email', 'What is your E-Mail:',
 											'trim|required|min_length[5]|max_length[35]|valid_email|xss_clean');
 
-		$data = array(
-			'title' => 'Retrieve Password',
-			'css' => base_url('css/style.css'),
-			);
+		$data['title'] = 'Retrieve Password';
 
 		if($this->form_validation->run() == FALSE)
 		{
@@ -213,10 +204,8 @@ class Admin extends CI_Controller {
 		$password = $this->users->retrieve_password($name, $email);
 
 		$data = array(
-			'css' => base_url('css/style.css'),
 			'title' => 'Password Retrieved',
 			'message' => 'Your password was retrieved!',
-			//'instructions' => 'Check your email, get your password and try logging in again',
 			'instructions' => 'Name: ' . $name . '<br>' . 'Email: ' . $email . '<br>' . 'Password: ' . $password
 			);
 
@@ -255,7 +244,6 @@ class Admin extends CI_Controller {
 		$this->session->sess_destroy();
 
 		$data = array(
-			'css' => base_url('css/style.css'),
 			'title' => 'Logged Out of Rayco Admin Panel',
 			'message' => 'You have logged out!',
 			//'instructions' => 'Check your email, get your password and try logging in again',

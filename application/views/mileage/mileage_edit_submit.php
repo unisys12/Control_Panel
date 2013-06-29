@@ -1,8 +1,8 @@
-<section id="panel" class="flexbox">
-	<article id="panel_display">
+<section class="row">
+		<article class="small-8 columns">
 		<p>Your mileage entry edit has been made ... </p>
 		<br />
-		
+
 		<div class="summary_form">
 		<h2>Mileage Summary</h2>
 		<?php
@@ -11,9 +11,9 @@
 		echo form_date('ending_range', '');
 		echo form_submit('submit', 'Submit');
 		echo form_close();
-		
-		echo "<br />";	
-		?>         
+
+		echo "<br />";
+		?>
 		</div>
 
 	</article>

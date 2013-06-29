@@ -1,5 +1,6 @@
-<section class="main_content">
-	<?php 
+<section class="row">
+	<article class="small-8 columns">
+	<?php
 
 	echo form_fieldset('Retrieve Password');
 	echo form_open('admin/fetch');
@@ -16,4 +17,5 @@
 	echo form_fieldset_close();
 	echo form_close();
 	?>
+	</article>
 </section>

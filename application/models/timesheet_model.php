@@ -40,7 +40,7 @@ class Timesheet_model extends CI_Model{
 			$query = $this->db->insert('timesheet', $data);
 
 			// Set a success Message
-			$msg = "Thanks for submitting your time for " . $date . ".";
+			$msg = "Thanks for submitting your time for <span class='msg'> " . $date . "</span>.";
 
 			// Return the success messaage (not working by the way, for some reason)
 			return $msg;

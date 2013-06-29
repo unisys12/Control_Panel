@@ -1,4 +1,5 @@
-<div id="form">
+<section class="row">
+	<article class="small-8 columns">
 	<?php
 
 	echo $logout_message;
@@ -17,6 +18,7 @@
 	echo form_close();
 
 	?>
-	<small>Forgot your password? Click <a href="fetch.php">here</a>!</small><br />		
+	<small>Forgot your password? Click <a href="fetch.php">here</a>!</small><br />
 	<small>Don't have an account yet? Sign up <a href="register.php">here</a>!</small>
-</div>
+</article>
+</section>

@@ -1,13 +1,12 @@
-
-<section class="summary">
-	<header class="header">
-		<h2>Rayco Mileage Report Summary for <?php echo $name ?></h2>
+<section class="print_summary">
+	<header class="print_header">
+		<h4>Rayco Mileage Report Summary for <?php echo $name ?></h4>
 		<h6>for the date range of <?php echo $starting_range ?> through <?php echo $ending_range ?></h6>
 	</header>
-	
+
 	<article>
 
-		<?php	
+		<?php
 		echo "<table class='print' rules='all'>";
 		echo "<thead>";
 		echo "<tr>";
@@ -16,12 +15,12 @@
 		echo "<th>" . 'Ending Odometer' . "</th>";
 		echo "<th>" . 'Daily Total' . "</th>";
 		echo "</tr>";
-		echo "</thead><tr>";	
+		echo "</thead><tr>";
 
 		foreach ($mileage->result() as $row){
 				echo "<td>" . $row->date . "</td>";
 				echo "<td>" . $row->start . "</td>";
-				echo "<td>" . $row->end . "</td>"; 
+				echo "<td>" . $row->end . "</td>";
 				echo "<td>" . $row->total . "</td>";
 				echo "</tr>";
 			}
@@ -30,3 +29,5 @@
 		?>
 	</article>
 </section>
+
+<div class="signature"></div>

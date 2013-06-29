@@ -1,19 +1,18 @@
-	
-	<section id="panel" class="flexbox">
-		<div class="summary_form">
+<section class="row">
+	<article class="small-8 columns">
 		<h2>Mileage Summary</h2>
-		<?php	
+		<?php
 
 		echo form_open('mileage/mileage_summary', '');
 		echo form_date('starting_range', isset($starting_range) ? $starting_range : set_value("starting_range")) . "<br />";
 		echo form_date('ending_range', isset($ending_range) ? $ending_range : set_value("ending_range"));
 		echo form_submit('submit', 'Submit');
 		echo form_close();
-		
-		echo "<br />";		
-		?>         
-		</div>
-		<article id="panel_display">
+
+		echo "<br />";
+		?>
+		<section class="row">
+			<article class="small-8 columns">
 			<?php
 
 			$attr = array('class' => 'class = "icon-printer"');
@@ -38,7 +37,7 @@
 			foreach ($mileage->result() as $row){
 				echo "<td>" . $row->date . "</td>";
 				echo "<td>" . $row->start . "</td>";
-				echo "<td>" . $row->end . "</td>"; 
+				echo "<td>" . $row->end . "</td>";
 				echo "<td>" . $row->total . "</td>";
 				echo "<td>" . anchor('mileage/mileage_edit/' . $row->id , 'Edit');
 				echo "</tr>";
@@ -48,5 +47,7 @@
 			echo "<br>";
 			?>
 
-		</article>
-	</section>
+			</article>
+		</section>
+	</article>
+</section>
